@@ -13,8 +13,9 @@ const RoutesComponent = () => {
     <BrowserRouter>
       <NavBar />
       <Routes>
-        <Route path="/" element={<ItemListContainer />} />
-        <Route exact path="/details/:id" element={<ItemDetailContainer />} />
+        <Route exact path="/" element={<ItemListContainer />} />
+        <Route path="/category/:id" element={<ItemListContainer />} />
+        <Route exact path="/item/:id" element={<ItemDetailContainer />} />
       </Routes>
     </BrowserRouter>
   );

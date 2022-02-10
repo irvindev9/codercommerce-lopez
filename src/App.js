@@ -1,13 +1,20 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import NavBar from './components/NavBar';
+// import NavBar from './components/NavBar';
 import './App.css';
 import RoutesComponent from './Routes/Routes';
+import CartProvider from './context/CartContext';
+import { useContext } from 'react';
 
 
 function App() {
+  const info = useContext(CartProvider);
+  console.log(info);
   return (
     <div className="App">
-      <RoutesComponent />
+      {info}
+      <CartProvider>
+        <RoutesComponent />
+      </CartProvider>
     </div>
   );
 }

@@ -6,7 +6,7 @@ const Item = ({name, price, id, setSelectedItem}) => {
     <div className="col-3 p-3">
       <div className="card">
         <div className="card-body">
-          <h5 className="card-title">{name}</h5>
+          <a href={'/item/' + id}><h5 className="card-title">{name}</h5></a>
           <p className="card-text">Precio: ${price}</p>
           {/* <button onClick={() => setSelectedItem(id)}>Seleccionar</button> */}
           <ItemCount max={10} />

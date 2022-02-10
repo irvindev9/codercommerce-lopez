@@ -3,7 +3,7 @@ const ItemDetail = ({ item }) => {
     <div className="container">
       <h1>ItemDetail</h1>
       <div className="row">
-        <div className="col-md-6">
+        <div className="col-md-3">
           <div className="card">
             <img src={item.image} className="card-img-top" alt="image" />
             <div className="card-body">

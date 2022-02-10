@@ -1,11 +1,14 @@
 import React from 'react';
 import { useState } from 'react';
 import ItemList from './ItemList';
+import { useParams } from 'react-router-dom';
 
 
 
 const ItemListContainer = ({items}) => {
   const [selectedItem, setSelectedItem] = useState(null);
+
+  const { id } = useParams();
 
   return (
     <div className='container'>
@@ -13,7 +16,7 @@ const ItemListContainer = ({items}) => {
       <b>
         Seleccionado: {selectedItem !== null ? items[selectedItem].name : 'Ninguno'}
       </b>
-      <ItemList />
+      <ItemList id={id} />
     </div>
   );
 };
