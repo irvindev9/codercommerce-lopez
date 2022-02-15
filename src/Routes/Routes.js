@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import ItemListContainer from '../components/ItemListContainer';
 import ItemDetailContainer from '../components/ItemDetailContainer';
+import CartContainer from '../components/CartContainer';
 
 const RoutesComponent = () => {
   return (
@@ -16,6 +17,7 @@ const RoutesComponent = () => {
         <Route exact path="/" element={<ItemListContainer />} />
         <Route path="/category/:id" element={<ItemListContainer />} />
         <Route exact path="/item/:id" element={<ItemDetailContainer />} />
+        <Route exact path="/cart" element={<CartContainer />} />
       </Routes>
     </BrowserRouter>
   );

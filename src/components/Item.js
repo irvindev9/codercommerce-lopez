@@ -1,5 +1,4 @@
 import React from 'react';
-import ItemCount from './ItemCount';
 
 const Item = ({name, price, id, setSelectedItem}) => {
   return (
@@ -9,7 +8,6 @@ const Item = ({name, price, id, setSelectedItem}) => {
           <a href={'/item/' + id}><h5 className="card-title">{name}</h5></a>
           <p className="card-text">Precio: ${price}</p>
           {/* <button onClick={() => setSelectedItem(id)}>Seleccionar</button> */}
-          <ItemCount max={10} />
         </div>
       </div>
   </div>
