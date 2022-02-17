@@ -1,9 +1,27 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import ItemCount from './ItemCount';
-
+import {CartContext} from '../context/CartContext';
+import { useNavigate } from 'react-router-dom';
+ 
 const ItemDetail = ({ item }) => {
+  const history = useNavigate();
 
-  const [addToItemsCart, setAddItemsToCart] = useState(0);
+  const { info, setInfo } = useContext(CartContext);
+
+  console.log(info)
+
+  const [numberOfItems, setnumberOfItems] = useState(0);
+
+  const addToCart = () => {
+    setInfo({
+      ...info,
+      item
+    });
+    
+    history('/cart');
+
+    console.log(info);
+  }
 
   return (
     <div className="container">
@@ -18,12 +36,13 @@ const ItemDetail = ({ item }) => {
               <a href="#" className="btn btn-primary">${item.price}</a>
               <br />
 
-              { addToItemsCart === 0 ? (<ItemCount max={item.quantity} onAdd={setAddItemsToCart} />) : (<small className="text-center mt-1">{addToItemsCart} articulos en el carrito</small>)}
+              { numberOfItems === 0 ? (<ItemCount max={item.quantity} onAdd={setnumberOfItems} />) : (<small className="text-center mt-1">{numberOfItems} articulos en el carrito</small>)}
               
               <br />
               
               <br />
-              <a className='btn btn-primary mt-1' href="/cart">Comprar ahora</a>
+              {/* <a className='btn btn-primary mt-1' href="/cart">Comprar ahora</a> */}
+              <button className='btn btn-primary mt-1' onClick={addToCart}>Comprar ahora</button>
             </div>
           </div>
         </div>

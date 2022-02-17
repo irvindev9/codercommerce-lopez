@@ -1,5 +1,6 @@
 import { Navbar, Container, NavDropdown, Nav } from "react-bootstrap"
 import CartIcon from '../icon/CartIcon';
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
@@ -9,17 +10,19 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
+            <Link to="/">Home</Link>
             <NavDropdown title="Categorias" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/category/Nintendo">Nintendo</NavDropdown.Item>
-              <NavDropdown.Item href="/category/Playstation">Playstation</NavDropdown.Item>
-              <NavDropdown.Item href="/category/Xbox">Xbox</NavDropdown.Item>
+              <Link to="/category/Nintendo">Nintendo</Link>
+              <Link to="/category/Playstation">Playstation</Link>
+              <Link to="/category/Xbox">Xbox</Link>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/">Ver todo</NavDropdown.Item>
+              <Link to="/">Ver todo</Link>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
-        <CartIcon />
+        <Link to="/cart">
+          <CartIcon />
+        </Link>
       </Container>
     </Navbar>
   )

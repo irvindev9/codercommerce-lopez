@@ -57,7 +57,7 @@ export const items = () => {
 
 export const item = async (id) => {
   await items().then(items => {
-    console.log(items);
+    // console.log(items);
     return items.filter(item => item.id === id);
   });
 }

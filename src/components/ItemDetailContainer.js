@@ -11,8 +11,6 @@ export const ItemDetailContainer = () => {
   useEffect(() => {
     items(id).then(items => {
       setItem(items.filter(item => {
-        console.log(item.id);
-        console.log(id);
         return item.id == id;
       })[0]);
     });
