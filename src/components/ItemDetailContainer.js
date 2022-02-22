@@ -2,6 +2,7 @@ import items from "../resources/items";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ItemDetail from "./ItemDetail";
+import { getItems } from '../utils/firebase';
 
 export const ItemDetailContainer = () => {
   const { id } = useParams();
@@ -9,10 +10,8 @@ export const ItemDetailContainer = () => {
   const [item, setItem] = useState(null);
 
   useEffect(() => {
-    items(id).then(items => {
-      setItem(items.filter(item => {
-        return item.id == id;
-      })[0]);
+    getItems().then(response => {
+      setItem(response[id]);
     });
   }, []);
 

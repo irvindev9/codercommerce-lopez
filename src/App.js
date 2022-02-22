@@ -8,7 +8,6 @@ import { useContext } from 'react';
 
 function App() {
   const info = useContext(CartProvider);
-  console.log(info);
   return (
     <div className="App">
       {info}

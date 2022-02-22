@@ -1,4 +1,5 @@
 import { useState, useContext } from 'react';
+import React from 'react'
 import ItemCount from './ItemCount';
 import {CartContext} from '../context/CartContext';
 import { useNavigate } from 'react-router-dom';
@@ -6,21 +7,25 @@ import { useNavigate } from 'react-router-dom';
 const ItemDetail = ({ item }) => {
   const history = useNavigate();
 
-  const { info, setInfo } = useContext(CartContext);
+  const { info, setInfo } = React.useContext(CartContext);
 
-  console.log(info)
+  
 
   const [numberOfItems, setnumberOfItems] = useState(0);
 
-  const addToCart = () => {
+  const addToCart = (items) => {
+    setnumberOfItems(items);
     setInfo({
       ...info,
-      item
+      [item.name]: {
+        ...item,
+        quantity: items
+      }
     });
-    
-    history('/cart');
+  }
 
-    console.log(info);
+  const goToCart = () => {
+    history('/cart');
   }
 
   return (
@@ -33,16 +38,15 @@ const ItemDetail = ({ item }) => {
             <div className="card-body item-detail-container">
               <h5 className="card-title">{item.name}</h5>
               <p className="card-text">{item.description}</p>
-              <a href="#" className="btn btn-primary">${item.price}</a>
+              <button className="btn btn-primary">${item.price}</button>
               <br />
 
-              { numberOfItems === 0 ? (<ItemCount max={item.quantity} onAdd={setnumberOfItems} />) : (<small className="text-center mt-1">{numberOfItems} articulos en el carrito</small>)}
+              { numberOfItems === 0 ? (<ItemCount max={item.quantity} addToCart={addToCart} />) : (<small className="text-center mt-1">{numberOfItems} articulos en el carrito</small>)}
               
               <br />
               
               <br />
-              {/* <a className='btn btn-primary mt-1' href="/cart">Comprar ahora</a> */}
-              <button className='btn btn-primary mt-1' onClick={addToCart}>Comprar ahora</button>
+              <button className='btn btn-primary mt-1' onClick={goToCart}>Comprar ahora</button>
             </div>
           </div>
         </div>

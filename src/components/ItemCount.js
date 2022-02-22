@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const ItemCount = ({max = 0, onAdd}) => {
+const ItemCount = ({max = 0, addToCart}) => {
   const [count, setCount] = useState(1);
 
   const add = () => {
@@ -22,7 +22,10 @@ const ItemCount = ({max = 0, onAdd}) => {
         <button type="button" className="btn btn-outline-primary" disabled>{count}</button>
         <button onClick={() => add()} type="button" className="btn btn-outline-primary">+</button>
       </div>
-      <button className="btn btn-sm btn-outline-primary" onClick={() => onAdd(count)}>Agregar al carrito</button>
+      <button className="btn btn-sm btn-outline-primary" onClick={() => {
+        // onAdd(count);
+        addToCart(count);
+      }}>Agregar al carrito</button>
     </div>
   );
 }

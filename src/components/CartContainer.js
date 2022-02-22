@@ -1,11 +1,14 @@
 import React from 'react'
 import {CartContext} from '../context/CartContext';
+import Cart from './Cart';
 
 function CartContainer() {
   const {info, setInfo} = React.useContext(CartContext);
 
   return (
-    <div>{ JSON.stringify(info) }</div>
+    <div>
+      <Cart cart={info} setInfo={setInfo} />
+    </div>
   )
 }
 

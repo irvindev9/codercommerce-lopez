@@ -14,7 +14,7 @@ export const items = () => {
       name: 'Halo Infinite',
       category: 'Xbox',
       price: 500,
-      image: 'https://static.wikia.nocookie.net/halo/images/3/3e/Halo_infinite_vertical.png/revision/latest?cb=20200722153039&path-prefix=es',
+      image: 'https://images-na.ssl-images-amazon.com/images/I/911GAl+yrGL.jpg',
       description: 'Producto nuevo, con caja y etiquetas',
       quantity: 10
     },
@@ -57,7 +57,6 @@ export const items = () => {
 
 export const item = async (id) => {
   await items().then(items => {
-    // console.log(items);
     return items.filter(item => item.id === id);
   });
 }

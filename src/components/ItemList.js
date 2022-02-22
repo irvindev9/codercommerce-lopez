@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import Items from "../resources/items";
 import Item from './Item';
+import { getItems } from '../utils/firebase';
 
 const ItemList = ({id = null}) => {
   const [items, setItems] = useState([]);
-
-  console.log(items.filter(item => item.category === id));
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    Items().then(items => {
-      setItems(items);
+    getItems().then(response => {
+      setProducts(response);
     });
   }, []);
 
@@ -19,10 +18,10 @@ const ItemList = ({id = null}) => {
       <div className="row">
         {
           id ?
-            items.filter(item => item.category === id).map(item => <Item key={item.id} {...item}  />)
+          products.filter(item => item.category === id).map((item, index) => <Item key={index} id={index} name={item.name} price={item.price}  />)
             :
-            items.map(item => (
-              <Item key={item.id} {...item} />
+            products.map((item, index) => (
+              <Item key={index} id={index} {...item} />
             ))
         }
 

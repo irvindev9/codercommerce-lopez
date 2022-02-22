@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Item = ({name, price, id, setSelectedItem}) => {
+const Item = ({name, price, id}) => {
   return (
     <div className="col-3 p-3">
       <div className="card">
