@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDocs, addDoc } from 'firebase/firestore/lite';
 // Authentication
 const firebaseConfig = {
   apiKey: "AIzaSyAwx9wIAb4GiVXuViOISH0h8oQkYx0TCr4",
@@ -20,4 +20,21 @@ export async function getItems() {
   const itemsSnap = await getDocs(itemsCol);
   const itemsList = itemsSnap.docs.map(doc => doc.data());
   return itemsList;
+}
+
+export const sendOrder = (buyer, order) => {
+  const newOrder = {
+    buyer: buyer,
+    items: order, 
+    total: Object.values(order).reduce((acc, item) => acc + (item.price * item.quantity), 0),
+  }
+
+  const db = getFirestore(app);
+  const ordersCol = collection(db, 'orders');
+  addDoc(ordersCol, newOrder).then((res) => {
+    alert(`Order enviada. Order id: ${res.id}`);
+  }).catch(err => {
+    console.log('Error', err);
+  });
+
 }
