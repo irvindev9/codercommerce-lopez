@@ -18,7 +18,7 @@ export const ItemDetailContainer = () => {
 
   return (
     <div className="container">
-      <h1>ItemDetailContainer</h1>
+      <h1>Contenido</h1>
       <div className="row">	
       { item !== null ? (
         <ItemDetail item={item} />

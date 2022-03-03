@@ -30,7 +30,7 @@ const ItemDetail = ({ item }) => {
 
   return (
     <div className="container">
-      <h1>ItemDetail</h1>
+      <h1>Detalles</h1>
       <div className="row">
         <div className="col-md-3">
           <div className="card">

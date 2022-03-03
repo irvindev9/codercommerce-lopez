@@ -14,11 +14,11 @@ const ItemList = ({id = null}) => {
 
   return (
     <div>
-      <h1>ItemList</h1>
+      <h1>Listado</h1>
       <div className="row">
         {
           id ?
-          products.filter(item => item.category === id).map((item, index) => <Item key={index} id={index} name={item.name} price={item.price}  />)
+          products.filter(item => item.category === id).map((item, index) => <Item image={item.image} key={index} id={index} name={item.name} price={item.price}  />)
             :
             products.map((item, index) => (
               <Item key={index} id={index} {...item} />

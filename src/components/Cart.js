@@ -5,11 +5,27 @@ import { sendOrder } from '../utils/firebase';
 const Cart = ({cart}) => {
 
   const { info, setInfo } = useContext(CartContext);
+
+  const [ active, setActive ] = useState(false);
   const [buyer, setBuyer] = useState({
     name: '',
     phone: '',
-    email: ''
+    email: '',
+    veryfyEmail: '',
   });
+
+  useEffect(() => {
+    // validate buyer info
+    if (Object.values(buyer).every(item => item !== '')) {
+      if(buyer.email === buyer.veryfyEmail) {
+        setActive(true);
+      } else {
+        setActive(false);
+      }
+    } else {
+      setActive(false);
+    }
+  }, [buyer]);
 
   const [order, setOrder] = useState([]);
 
@@ -41,8 +57,8 @@ const Cart = ({cart}) => {
 
   return (
     <div className="cart">
-      <h2>Cart</h2>
-      <div className="buyer-info col-5 offset-1 my-3">
+      <h2>Procesar compra</h2>
+      <div className="buyer-info col-12 col-md-8 col-lg-4 offset-1 my-3">
         <div className="form-group">
           <label htmlFor="name">Nombre</label>
           <input
@@ -76,9 +92,20 @@ const Cart = ({cart}) => {
             onChange={(e) => setBuyer({...buyer, email: e.target.value})}
           />
         </div>
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <input
+            type="text"
+            className="form-control"
+            id="email"
+            placeholder="Re-ingrese email"
+            value={buyer.veryfyEmail}
+            onChange={(e) => setBuyer({...buyer, veryfyEmail: e.target.value})}
+          />
+        </div>
       </div>
       <div className="cart-items container">
-      <ul className="list-group">
+      <ul className="list-group col-12 col-md-8 col-lg-4">
         {Object.keys(cart).map((key, index) => (
           <li key={index} className="list-group-item">
             {cart[key].name} : {cart[key].quantity} x (${cart[key].price})
@@ -97,8 +124,12 @@ const Cart = ({cart}) => {
         </li>
       </ul>
       </div>
-      <div className="cart-total">
-        <button onClick={() => sendOrder(buyer, order)} className="btn btn-primary float-end mt-3 mx-2">Terminar mi compra</button>
+      <div className="cart-total container">
+        <div className='row'>
+          <div className="col-12 col-md-8 col-lg-4">
+            <button disabled={!active} onClick={() => sendOrder(buyer, order)} className="btn btn-primary mt-3 mx-2">Terminar mi compra</button>
+          </div>
+        </div>
       </div>
     </div>
   );
