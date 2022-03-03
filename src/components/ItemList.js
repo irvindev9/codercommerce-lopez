@@ -18,7 +18,11 @@ const ItemList = ({id = null}) => {
       <div className="row">
         {
           id ?
-          products.filter(item => item.category === id).map((item, index) => <Item image={item.image} key={index} id={index} name={item.name} price={item.price}  />)
+          products.map((item, index) => {
+            if (item.category === id) {
+              return <Item key={index} id={index} {...item} />
+            }
+          })
             :
             products.map((item, index) => (
               <Item key={index} id={index} {...item} />
